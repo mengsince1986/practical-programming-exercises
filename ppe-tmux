@@ -1,0 +1,22 @@
+# START:new
+tmux new-session -s practical_programming -n editor -d
+# END:new
+# START:cd
+tmux send-keys -t practical_programming 'cd ~/Documents/repositories/practical-programming-exercises' C-m
+# END:cd
+# START:clear
+tmux send-keys -t practical_programming 'clear' C-m
+# END:clear
+# START:vsplit
+tmux split-window -h -p 33 -t practical_programming
+# END:vsplit
+# START:keystopane
+tmux send-keys -t practical_programming:1.2 'cd ~/Documents/repositories/practical-programming-exercises' C-m
+tmux send-keys -t practical_programming:1.2 'clear' C-m
+tmux send-keys -t practical_programming:1.2 'python' C-m
+# END:keystopane
+# START:pane
+tmux select-pane -L -t practical_programming
+# END:pane
+
+tmux attach -t practical_programming
