@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# create new session
+tmux new-session -s practical_programming -x $(tput cols) -y $(tput lines) -n editor -d
+
+# cd to repository folder
+tmux send-keys -t practical_programming 'cd ~/Documents/repositories/practical-programming-exercises' C-m
+
+# split window
+tmux split-window -h -p 32 -t practical_programming
+
+# cd to repository folder in the 2nd pane
+tmux send-keys -t practical_programming:1.2 'cd ~/Documents/repositories/practical-programming-exercises' C-m
+
+# clear screen
+tmux send-keys -t practical_programming:1.2 'clear' C-m
+
+# call python interpreter
+tmux send-keys -t practical_programming:1.2 'python' C-m
+
+# select left pane
+tmux select-pane -L -t practical_programming
+
+# clear screen
+tmux send-keys -t practical_programming:1.1 'clear' C-m
+
+# call nvim
+tmux send-keys -t practical_programming 'nvim' Space Tab
+
+# attach session
+tmux attach -t practical_programming
